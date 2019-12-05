@@ -31,7 +31,7 @@ PART 1: CREATING A DATABASE
 
  CREATE TABLE Payments(CustomerID integer REFERENCES Customers(CustomerID),
  PaymentID SERIAL PRIMARY KEY,
- PaymentDate TIMESTAMP,
+ PaymentDate DATE,
  Amount DECIMAL);
 
  CREATE TABLE products(
@@ -45,8 +45,8 @@ PART 1: CREATING A DATABASE
  productID integer REFERENCES products(productID),
  PaymentID integer REFERENCES payments(PaymentID),
  fulfilledByEmployeeID integer REFERENCES employees(employeeID),
- DateRequired TIMESTAMP,
- DateShipped TIMESTAMP,
+ DateRequired DATE,
+ DateShipped DATE,
  Status VARCHAR(20));
 
 5.
@@ -63,15 +63,15 @@ PART 1: CREATING A DATABASE
  INSERT INTO employees values(2, 'Lesly', 'Cronje', 'LesC@gmail.com', 'Clerk');
  INSERT INTO employees values(3, 'Gideon', 'Maduku', 'm@gmail.com', 'Accountant');
 
---ORDERS TABLE
- INSERT INTO Orders values(1, 1, 1, 2, 05-09-2018, DEFAULT, 'Not Shipped');
- INSERT INTO Orders values(2, 1, 2, 2, 04-09-2018, 03-09-2018, 'Shipped');
- INSERT INTO Orders values(3, 3, 3, 3, 06-09-2018, DEFAULT, 'Not Shipped');
+--ORDERS TABLE  (the date format is in year-month-day)
+ INSERT INTO Orders values(1, 1, 1, 2, 2018-09-05, DEFAULT, 'Not Shipped');
+ INSERT INTO Orders values(2, 1, 2, 2, 2018-09-04, 2018-09-03, 'Shipped');
+ INSERT INTO Orders values(3, 3, 3, 3, 2018-09-06, DEFAULT, 'Not Shipped');
  
---PAYMENTS TABLE
- INSERT INTO Payments values(1, 1, 01-09-2018, 150.75);
- INSERT INTO Payments values(5, 2, 03-09-2018, 150.75);
- INSERT INTO Payments values(4, 3, 03-09-2018, 700.60);
+--PAYMENTS TABLE  (the date format is in year-month-day)
+ INSERT INTO Payments values(1, 1, 2018-09-01, 150.75);
+ INSERT INTO Payments values(5, 2, 2018-09-03, 150.75);
+ INSERT INTO Payments values(4, 3, 2018-09-03, 700.60);
 
 --PRODUCTS TABLE
  INSERT INTO Products values(1, "Harley Davidson Chopper", "This replica features working kickstand, front suspension, gear-shift lever", 150.75);

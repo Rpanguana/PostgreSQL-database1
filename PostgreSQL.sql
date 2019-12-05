@@ -29,16 +29,16 @@ PART 1: CREATING A DATABASE
  email VARCHAR(100),
  JobTitle VARCHAR(20));
 
- CREATE TABLE Payments(CustomerID integer REFERENCES Customers(CustomerID),
- PaymentID SERIAL PRIMARY KEY,
- PaymentDate DATE,
- Amount DECIMAL);
-
  CREATE TABLE products(
  productID SERIAL PRIMARY KEY,
  productName VARCHAR(100),
  description VARCHAR(300),
  buyPrice DECIMAL);
+
+ CREATE TABLE Payments(CustomerID integer REFERENCES Customers(CustomerID),
+ PaymentID SERIAL PRIMARY KEY,
+ PaymentDate DATE,
+ Amount DECIMAL);
 
  CREATE TABLE orders(
  orderID SERIAL PRIMARY KEY,
@@ -63,20 +63,20 @@ PART 1: CREATING A DATABASE
  INSERT INTO employees values(2, 'Lesly', 'Cronje', 'LesC@gmail.com', 'Clerk');
  INSERT INTO employees values(3, 'Gideon', 'Maduku', 'm@gmail.com', 'Accountant');
 
---ORDERS TABLE  (the date format is in year-month-day)
- INSERT INTO Orders values(1, 1, 1, 2, 2018-09-05, DEFAULT, 'Not Shipped');
- INSERT INTO Orders values(2, 1, 2, 2, 2018-09-04, 2018-09-03, 'Shipped');
- INSERT INTO Orders values(3, 3, 3, 3, 2018-09-06, DEFAULT, 'Not Shipped');
- 
---PAYMENTS TABLE  (the date format is in year-month-day)
- INSERT INTO Payments values(1, 1, 2018-09-01, 150.75);
- INSERT INTO Payments values(5, 2, 2018-09-03, 150.75);
- INSERT INTO Payments values(4, 3, 2018-09-03, 700.60);
-
 --PRODUCTS TABLE
- INSERT INTO Products values(1, "Harley Davidson Chopper", "This replica features working kickstand, front suspension, gear-shift lever", 150.75);
- INSERT INTO Products values(2, "Classic Car", "Turnable front wheels, steering function", 550.75);
- INSERT INTO Products values(3, "Sports car", "Turnable front wheels, steering function", 700.60);
+ INSERT INTO Products values(1, 'Harley Davidson Chopper', 'This replica features working kickstand, front suspension, gear-shift lever', 150.75);
+ INSERT INTO Products values(2, 'Classic Car', 'Turnable front wheels, steering function', 550.75);
+ INSERT INTO Products values(3, 'Sports car', 'Turnable front wheels, steering function', 700.60);
+
+--PAYMENTS TABLE  (the date format is in year-month-day)
+ INSERT INTO Payments values(1, 1, '2018-09-01', 150.75);
+ INSERT INTO Payments values(5, 2, '2018-09-03', 150.75);
+ INSERT INTO Payments values(4, 3, '2018-09-03', 700.60);
+
+--ORDERS TABLE  (the date format is in year-month-day)
+ INSERT INTO Orders values(1, 1, 1, 2, '2018-09-05', DEFAULT, 'Not Shipped');
+ INSERT INTO Orders values(2, 1, 2, 2, '2018-09-04', '2018-09-03', 'Shipped');
+ INSERT INTO Orders values(3, 3, 3, 3, '2018-09-06', DEFAULT, 'Not Shipped');
 
  SELECT * FROM Customers;
 
